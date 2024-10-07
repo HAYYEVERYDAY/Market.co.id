@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAYY EVERYDAY</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial;
+            background-color: rgb(255, 255, 255);
+        }
+
+        .background-image {
+            position: absolute;
+            top: 130%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            width: 100%; 
+            height: auto;
+            opacity: 0.5; 
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .image-container {
+            position: relative;
+            width: 90%; /* Lebar diubah menjadi persentase agar responsif */
+            height: auto;
+            margin: 20px 0;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+
+        .image-container.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .image {
+            width: 100%;
+            height: auto; /* Tinggi otomatis mengikuti lebar */
+            display: block;
+            border-radius: 20px;
+        }
+
+        .logo-small {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+        }
+
+        .btn-enter {
+            position: absolute;
+            top: 80%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 10px 20px;
+            background-color: white;
+            color: black;
+            border: 2px solid black;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            opacity: 0.9;
+        }
+
+        .btn-enter:hover {
+            background-color: black;
+            color: white;
+            opacity: 1;
+        }
+
+        .brand-logo {
+            margin-bottom: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .brand-logo img {
+            width: 150px; /* Lebar disesuaikan agar tidak terlalu besar */
+            height: auto;
+        }
+
+        .brand-name {
+            font-family: Algerian;
+            background: rgb(255, 255, 255);
+           
+        }
+
+        
+        /* Media Query untuk tampilan mobile */
+        @media (max-width: 600px) {
+            .brand-name {
+                font-size: 1.8rem; /* Ukuran font lebih kecil untuk HP */
+               
+            }
+
+            .image-container {
+                width: 95%; /* Lebar kontainer diperbesar sedikit agar sesuai dengan layar kecil */
+            }
+
+            .btn-enter {
+                font-size: 12px;
+                padding: 8px 16px;
+            }
+
+            .brand-logo img {
+                width: 120px; /* Lebar logo lebih kecil untuk layar HP */
+            }
+        }
+    </style>
+</head>
+<body>
+    <img src="" class="background-image" alt="">
+    <!-- Logo/brand utama di atas gambar pertama -->
+    <div class="brand-logo">
+        <img src="logo.png" alt="Brand Logo">
+        <!-- Nama HAYY EVERYDAY di bawah logo -->
+        <h1 class="brand-name">HAYY EVERYDAY</h1>
+    </div>
+
+    <div class="container">
+        <!-- Setiap gambar memiliki logo kecil dan tombol di tengah -->
+        <div class="image-container">
+            <img src="WhatsApp.jpg" alt="Image 1" class="image">
+            <a href="https://wa.me/6283167437304" class="btn-enter">CHAT ADMIN</a>
+        </div>
+        <div class="image-container">
+            <img src="Shopee.jpg" alt="Image 2" class="image">
+            <a href="https://id.shp.ee/MEw2995" class="btn-enter">BELI SEKARANG</a>
+        </div>
+        <div class="image-container">
+            <img src="Lazada.jpg" alt="Image 3" class="image">
+            <a href="https://s.lazada.co.id/s.Gq4AH" class="btn-enter">BELI SEKARANG</a>
+        </div>
+        <div class="image-container">
+            <img src="Tiktok.jpg" alt="Image 4" class="image">
+            <a href="https://vt.tiktok.com/ZS27nHgJM/?page=Mall" class="btn-enter">BELI SEKARANG</a>
+        </div>
+    </div>
+
+    <script>
+        const imageContainers = document.querySelectorAll('.image-container');
+        const options = {
+            root: null,
+            threshold: 0.1,
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                } else {
+                    entry.target.classList.remove('show');
+                }
+            });
+        }, options);
+
+        imageContainers.forEach(imageContainer => {
+            observer.observe(imageContainer);
+        });
+    </script>
+</body>
+</html>
